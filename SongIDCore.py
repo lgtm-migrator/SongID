@@ -55,6 +55,8 @@ for env_var in ['songid_heroku_webhook', 'songid_heroku_listen', 'songid_heroku_
         break  # Break out of for loop to prevent multiple messages
     else:
         heroku_enabled = "True"
+
+if sentry_enabled:
 sentry_sdk.init(
 dsn=sentry_dsn,
 sample_rate=1.0,
