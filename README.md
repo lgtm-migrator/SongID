@@ -22,6 +22,35 @@ Working with the [Telegram Bot API](https://core.telegram.org/api) is made signi
 Read the blog post on how I created SongID on the [ACRCloud blog](https://blog.acrcloud.com/how-a-15-year-old-created-a-music-recognition-service-in-less-than-a-day-with-acrcloud)
 
 Also featured on [Telegram Channels](https://telegramchannels.me/bots/songidbot) and [BotoStore](https://botostore.com/c/songidbot/)
+
+# Set up SongID
+1. Clone this repo: `git clone https://github.com/smcclennon/songid.git`
+2. Install requirements: `python3 -m pip install --upgrade -r requirements.txt`
+3. Create a Telegram bot via @botfather, and retrieve your bot token
+4. Create 3 projects at ACRCloud (clear, noisy, hum) and retrieve your access keys and secrets
+5. Create environment variables:
+```
+export songid_tg_token="123:ABC-DEF"
+export songid_tg_devid="000000000"
+export songid_tg_devusername="@username"
+
+# Don't uncomment/run this if you're not using Heroku
+#export songid_heroku_webhook="https://yourherokuappname.herokuapp.com/"
+#export songid_heroku_listen="0.0.0.0"
+#export songid_heroku_port="5000"
+
+export songid_sentry_dsn="https://examplePublicKey@o0.ingest.sentry.io/0"
+
+export songid_acr_clear_key="Insert ACRCloud Project access key"
+export songid_acr_clear_secret="Insert ACRCloud Project access secret"
+
+export songid_acr_noisy_key="Insert ACRCloud Project access key"
+export songid_acr_noisy_secret="Insert ACRCloud Project access secret"
+
+export songid_acr_hum_key="Insert ACRCloud Project access key"
+export songid_acr_hum_secret="Insert ACRCloud Project access secret"
+```
+6. Run SongID: `python3 SongID.py` 
 ## Screenshots
 <img src="https://smcclennon.github.io/assets/images/screenshots/SongID/voice.png" alt="Send Voice Message" width="100%"></img><img src="https://smcclennon.github.io/assets/images/screenshots/SongID/video.png" alt="Send Video" width="100%"></img>
 
