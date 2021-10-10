@@ -34,6 +34,27 @@ heroku_port = os.environ.get('songid_heroku_port')
 
 sentry_dsn = os.environ.get('songid_sentry_dsn')
 
+# Check all required environment variables are present
+for env_var in ['songid_tg_token', 'songid_tg_devid', 'songid_tg_devusername', 'songid_acr_clear_key', 'songid_acr_clear_secret', 'songid_acr_noisy_key', 'songid_acr_noisy_secret', 'songid_acr_hum_key', 'songid_acr_hum_secret']:
+    if os.environ.get(env_var) == None:
+        raise KeyError(f"Missing environment variable: \"{env_var}\"")
+
+# Check if Sentry is set up
+for env_var in ['songid_sentry_dsn']:
+    if os.environ.get(env_var) == None:
+        sentry_enabled = "False"
+        print('Missing environment variable: \"{env_var}\".  Sentry integration disabled.')
+    else:
+        sentry_enabled = "True"
+
+# Check if Heroku is set up
+for env_var in ['songid_heroku_webhook', 'songid_heroku_listen', 'songid_heroku_port']:
+    if os.environ.get(env_var) == None:
+        heroku_enabled = "False"
+        print('Missing environment variable: \"{env_var}\".  Heroku integration disabled.')
+        break  # Break out of for loop to prevent multiple messages
+    else:
+        heroku_enabled = "True"
 sentry_sdk.init(
 dsn=sentry_dsn,
 sample_rate=1.0,
