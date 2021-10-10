@@ -3,4 +3,5 @@ __pycache__
 *.psd
 token.json
 userdata.json
+set_environment_varaibles.sh
 data/downloads
