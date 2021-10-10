@@ -57,13 +57,13 @@ for env_var in ['songid_heroku_webhook', 'songid_heroku_listen', 'songid_heroku_
         heroku_enabled = "True"
 
 if sentry_enabled:
-sentry_sdk.init(
-dsn=sentry_dsn,
-sample_rate=1.0,
-traces_sample_rate=1.0,
-attach_stacktrace=True,
-with_locals=True
-)
+    sentry_sdk.init(
+    dsn=sentry_dsn,
+    sample_rate=1.0,
+    traces_sample_rate=1.0,
+    attach_stacktrace=True,
+    with_locals=True
+    )
 
 
 # Load data/userdata.json into the variable 'userdata'
