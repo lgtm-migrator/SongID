@@ -10,30 +10,23 @@ with open('data/acrcloud.json', 'r') as f:
     config = json.load(f)
     logger.info('Loaded: ACR Config')
 
-
-# Get the ACRCloud access & private keys
-acrkey = all_tokens["acr"]
-
-
-
-
 config_clear = config["clear"]
-config_clear["access_key"] = acrkey["clear"]["access_key"]
-config_clear["access_secret"] = acrkey["clear"]["access_secret"]
+config_clear["access_key"] = os.environ.get('songid_acr_clear_key')
+config_clear["access_secret"] = os.environ.get('songid_acr_clear_secret')
 config_clear["recognize_type"] = ACRCloudRecognizeType.ACR_OPT_REC_AUDIO
 config_clear["debug"] = False
 
 
 config_noisy = config["noisy"]
-config_noisy["access_key"] = acrkey["noisy"]["access_key"]
-config_noisy["access_secret"] = acrkey["noisy"]["access_secret"]
+config_noisy["access_key"] = os.environ.get('songid_acr_noisy_key')
+config_noisy["access_secret"] = os.environ.get('songid_acr_noisy_secret')
 config_noisy["recognize_type"] = ACRCloudRecognizeType.ACR_OPT_REC_AUDIO
 config_noisy["debug"] = False
 
 
 config_hum = config["hum"]
-config_hum["access_key"] = acrkey["hum"]["access_key"]
-config_hum["access_secret"] = acrkey["hum"]["access_secret"]
+config_hum["access_key"] = os.environ.get('songid_acr_hum_key')
+config_hum["access_secret"] = os.environ.get('songid_acr_hum_secret')
 config_hum["recognize_type"] = ACRCloudRecognizeType.ACR_OPT_REC_BOTH
 config_hum["debug"] = False
 

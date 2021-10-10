@@ -21,18 +21,18 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-#  Load private information regarding the telegram bot
-with open('data/token.json', 'r') as f:
-    all_tokens = json.load(f)
-    telegramConfig = all_tokens["telegram"]
-    token = telegramConfig["token"]
-    devid = telegramConfig["devid"]
-    devusername = telegramConfig["devusername"]
-    heroku_enabled = all_tokens["heroku"]["enabled"]
-    heroku_webhook = all_tokens["heroku"]["webhook"]
-    heroku_listen = all_tokens["heroku"]["listen"]
-    heroku_port = all_tokens["heroku"]["port"]
-    sentry_dsn = all_tokens["sentry"]["dsn"]
+# Load environment environment variables
+# using .get so KeyError is not raised if env var does not exist
+# None is returned instead
+token = os.environ.get('songid_tg_token')
+devid = os.environ.get('songid_tg_devid')
+devusername = os.environ.get('songid_tg_devusername')
+
+heroku_webhook = os.environ.get('songid_heroku_webhook')
+heroku_listen = os.environ.get('songid_heroku_listen')
+heroku_port = os.environ.get('songid_heroku_port')
+
+sentry_dsn = os.environ.get('songid_sentry_dsn')
 
 sentry_sdk.init(
 dsn=sentry_dsn,
